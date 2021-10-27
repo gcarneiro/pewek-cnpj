@@ -3,3 +3,4 @@ flask_jsonpify
 flask_restful
 sqlalchemy
 gunicorn
+mysql-connector-python
