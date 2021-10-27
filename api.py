@@ -48,7 +48,7 @@ class CNPJ_unico(Resource):
    
 			return jsonify(empresa)
 		except:
-			return jsonify({'message': 'CNPJ não encontrado na base de dados'})
+			return jsonify({'message': 'CNPJ nao encontrado na base de dados'})
 		
 		
 
