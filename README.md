@@ -5,7 +5,7 @@ API que viabiliza a consulta de informações por CNPJs
 Você precisa ter o Python3.8+ instalado junto com o pip
 Você instalar todos as bibliotecas obrigatórias com o pip
 ```
-sudo pip install requirements
+sudo pip install -r requirements.txt
 ```
 
 ## Apontamento para banco de dados
