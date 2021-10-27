@@ -8,6 +8,8 @@ ADD requirements.txt /app
 
 ADD api.py /app
 
+ADD config.json /app
+
 RUN pip3 install -r requirements.txt
 
 EXPOSE 5020
