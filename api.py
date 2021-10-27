@@ -23,7 +23,7 @@ app = Flask(__name__)
 api = Api(app)
 
 class CNPJ_unico(Resource):
-    
+	
 	def get(self, cnpj):
 		try:
 			cursor = cnx.cursor()
@@ -46,11 +46,9 @@ class CNPJ_unico(Resource):
 			socio = [dict(zip(tuple (row_headers) ,i)) for i in rows]
 			empresa[0]['socio'] = socio
    
-  			return jsonify(empresa)
+			return jsonify(empresa)
 		except:
 			return jsonify({'message': 'CNPJ não encontrado na base de dados'})
-
-		return jsonify({'message': 'Houve um problema na busca das informações'})
 		
 		
 
