@@ -14,15 +14,21 @@ Você precisará ter o banco de dados oferecido pela receita construído sob um 
 ```
 {
     "host": "hostname",     
-	"port": "porta",     
-	"user": "usuario",     
-	"password": "senha", 
-	"database": "schema"
+"port": "porta",     
+"user": "usuario",     
+"password": "senha", 
+"database": "schema"
 }
 ```
 
 No projeto https://github.com/gcarneiro/open-data-cnpj-import temos o script que irá importar esse banco de dados direto da RF brasileira
 
-## Executando sem docker
+## Executando a api
+
+### Sem utilização de docker
+Basta você navegar até o seu projeto e executa-lo como um script python
+```
+python3 api.py
+```
 
 
