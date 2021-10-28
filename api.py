@@ -11,19 +11,20 @@ f = open("config.json", "r")
 cnf = json.load(f)
 print(cnf['host'])
 
-cnx = mysql.connector.connect(
-	host=cnf['host'],
-	port=cnf['port'],
-	user=cnf['user'],
-	password=cnf['password'],
-	database=cnf['database']
-)
-
 app = Flask(__name__)
 api = Api(app)
 
 class CNPJ_unico(Resource):
 	def get(self, cnpj):
+
+		cnx = mysql.connector.connect(
+			host=cnf['host'],
+			port=cnf['port'],
+			user=cnf['user'],
+			password=cnf['password'],
+			database=cnf['database']
+		)
+
 		cursor = cnx.cursor()
 		cursor.execute("SELECT id_empresa, subsidiaria, codigo_verificador, cnpj, matriz_filial as identificador_matriz_filial, fantasia as nome_fantasia, situacao_cadastral as situacao_cadastral, data_situacao_cadastral as data_situacao_cadastral, motivo_situacao_cadastral as motivo_situacao_cadastral, data_abertura as data_inicio_atividade, cnae_principal as cnae_fiscal, endereco_tipo_logradouro as descricao_tipo_logradouro, endereco_logradouro as logradouro, endereco_numero as numero, endereco_complemento as complemento, endereco_bairro as bairro, endereco_cep as cep, endereco_uf, endereco_codigo_municipio as codigo_municipio, telefone1_ddd as ddd_telefone_1, telefone1_numero, telefone2_ddd as ddd_telefone_2, telefone2_numero, fax_ddd as ddd_fax, fax_numero, email as correio_eletronico, email, id, razao_social as razao_social, codigo_natureza_juridica, qualificacao_responsavel as qualificacao_do_responsavel, capital_social, porte as porte, codigo, nome as municipio FROM cnpj.estabelecimento JOIN empresa ON empresa.id=estabelecimento.id_empresa JOIN municipio ON municipio.codigo=estabelecimento.endereco_codigo_municipio WHERE cnpj = '"+cnpj+"'")
 		row_headers=[x[0] for x in cursor.description] #this will extract row headers
@@ -43,6 +44,8 @@ class CNPJ_unico(Resource):
 		socio.append(dict(zip(row_headers, row)))
 		socio = [dict(zip(tuple (row_headers) ,i)) for i in rows]
 		empresa[0]['socio'] = socio
+
+		cnx.close()
 		
 		return jsonify(empresa)
 		
