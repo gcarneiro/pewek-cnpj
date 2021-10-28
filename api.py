@@ -49,7 +49,7 @@ class CNPJ_unico(Resource):
 			cnx.close()
 			return jsonify(empresa)
 		except:
-			return jsonify({'message': 'CNPJ nao encontrado na base de dados'})
+			return jsonify({'status': 'false', 'message': 'CNPJ nao encontrado na base de dados'})
 
 api.add_resource(CNPJ_unico, '/cnpj/<cnpj>')
 
